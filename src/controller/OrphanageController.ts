@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import * as Yup from 'yup'
 
 import orphanageView from '../views/orphanges_view'
 
@@ -39,6 +40,36 @@ class OrphanageController {
     const requestImages = request.files as Express.Multer.File[]
     const images = requestImages.map(image => {
       return { path: image.filename }
+    })
+
+    const data = {
+      name,
+      latitude,
+      longitude,
+      about,
+      instructions,
+      open_hours,
+      open_on_weekends,
+      images
+    }
+
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      latitude: Yup.number().required(),
+      longitude: Yup.number().required(),
+      about: Yup.string().max(300).required(),
+      instructions: Yup.string().required(),
+      open_hours: Yup.string().required(),
+      open_on_weekends: Yup.boolean().required(),
+      images: Yup.array(
+        Yup.object().shape({
+          path: Yup.string().required()
+        })
+      )
+    })
+
+    await schema.validate(data, {
+      abortEarly: false
     })
 
     const createOrphanageUseCase = new CreateOrphanageUseCase()
