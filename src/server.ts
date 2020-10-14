@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import express, { Express, json } from 'express'
+import { resolve } from 'path'
 import 'express-async-errors'
 
 import './database/connection'
@@ -21,6 +22,10 @@ class Server {
 
   middlewares() {
     this.server.use(json())
+    this.server.use(
+      '/uploads',
+      express.static(resolve(__dirname, '..', 'uploads'))
+    )
     this.server.use(Routes)
     this.server.use(middlewareError)
   }

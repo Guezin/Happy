@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
 
+import orphanageView from '../views/orphanges_view'
+
 import ListOrphanageUseCase from '../useCases/Orphanage/ListOrphanageUseCase'
 import ListAllOrphanagesUseCase from '../useCases/Orphanage/ListAllOrphanagesUseCase'
 import CreateOrphanageUseCase from '../useCases/Orphanage/CreateOrphanageUseCase'
@@ -10,7 +12,7 @@ class OrphanageController {
 
     const orphanages = await listAllOrphanagesUseCase.execute()
 
-    return response.status(200).json(orphanages)
+    return response.status(200).json(orphanageView.renderMany(orphanages))
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -20,7 +22,7 @@ class OrphanageController {
 
     const orphanage = await listOrphanageUseCase.execute(id)
 
-    return response.status(200).json(orphanage)
+    return response.status(200).json(orphanageView.render(orphanage))
   }
 
   public async store(request: Request, response: Response): Promise<Response> {
