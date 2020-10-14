@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import express, { Express, json } from 'express'
 import { resolve } from 'path'
+import cors from 'cors'
 import 'express-async-errors'
 
 import './database/connection'
@@ -22,6 +23,7 @@ class Server {
 
   middlewares() {
     this.server.use(json())
+    this.server.use(cors)
     this.server.use(
       '/uploads',
       express.static(resolve(__dirname, '..', 'uploads'))
