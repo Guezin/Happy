@@ -1,8 +1,17 @@
 import { Request, Response } from 'express'
 
+import ListAllOrphanagesUseCase from '../useCases/Orphanage/ListAllOrphanagesUseCase'
 import CreateOrphanageUseCase from '../useCases/Orphanage/CreateOrphanageUseCase'
 
 class OrphanageController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listAllOrphanagesUseCase = new ListAllOrphanagesUseCase()
+
+    const orphanages = await listAllOrphanagesUseCase.execute()
+
+    return response.status(200).json(orphanages)
+  }
+
   public async store(request: Request, response: Response): Promise<Response> {
     const {
       name,
@@ -26,7 +35,7 @@ class OrphanageController {
       open_on_weekends
     })
 
-    return response.json(orphanage)
+    return response.status(201).json(orphanage)
   }
 }
 

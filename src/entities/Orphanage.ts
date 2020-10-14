@@ -14,10 +14,10 @@ class Orphanage {
   @Column()
   name: string
 
-  @Column('decimal')
+  @Column('numeric', { precision: 2, scale: 10 })
   latitude: number
 
-  @Column('decimal')
+  @Column('numeric', { precision: 2, scale: 10 })
   longitude: number
 
   @Column()

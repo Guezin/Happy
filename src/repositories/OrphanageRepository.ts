@@ -12,6 +12,12 @@ class OrphanageRepository implements IOrphanageRepository {
     this.ormRepository = getRepository(Orphanage)
   }
 
+  public async listAll(): Promise<Orphanage[]> {
+    const orphanages = await this.ormRepository.find()
+
+    return orphanages
+  }
+
   public async create({
     name,
     latitude,

@@ -12,6 +12,7 @@ class OrphanageRoutes {
   }
 
   init() {
+    this.routes.get('/', new OrphanageController().index)
     this.routes.post('/', new OrphanageController().store)
   }
 }
