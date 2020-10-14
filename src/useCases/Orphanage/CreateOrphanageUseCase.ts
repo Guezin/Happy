@@ -10,6 +10,9 @@ interface IRequest {
   instructions: string
   open_hours: string
   open_on_weekends: boolean
+  images: Array<{
+    path: string
+  }>
 }
 
 class CreateOrphanageUseCase {
@@ -20,7 +23,8 @@ class CreateOrphanageUseCase {
     about,
     instructions,
     open_hours,
-    open_on_weekends
+    open_on_weekends,
+    images
   }: IRequest): Promise<Orphanage> {
     const orphanageRepository = new OrphanageRepository()
 
@@ -31,7 +35,8 @@ class CreateOrphanageUseCase {
       about,
       instructions,
       open_hours,
-      open_on_weekends
+      open_on_weekends,
+      images
     })
 
     return orphanage

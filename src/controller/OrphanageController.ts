@@ -34,6 +34,11 @@ class OrphanageController {
       open_on_weekends
     } = request.body
 
+    const requestImages = request.files as Express.Multer.File[]
+    const images = requestImages.map(image => {
+      return { path: image.filename }
+    })
+
     const createOrphanageUseCase = new CreateOrphanageUseCase()
 
     const orphanage = await createOrphanageUseCase.execute({
@@ -43,7 +48,8 @@ class OrphanageController {
       about,
       instructions,
       open_hours,
-      open_on_weekends
+      open_on_weekends,
+      images
     })
 
     return response.status(201).json(orphanage)
