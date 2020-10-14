@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 
+import ListOrphanageUseCase from '../useCases/Orphanage/ListOrphanageUseCase'
 import ListAllOrphanagesUseCase from '../useCases/Orphanage/ListAllOrphanagesUseCase'
 import CreateOrphanageUseCase from '../useCases/Orphanage/CreateOrphanageUseCase'
 
@@ -10,6 +11,16 @@ class OrphanageController {
     const orphanages = await listAllOrphanagesUseCase.execute()
 
     return response.status(200).json(orphanages)
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params
+
+    const listOrphanageUseCase = new ListOrphanageUseCase()
+
+    const orphanage = await listOrphanageUseCase.execute(id)
+
+    return response.status(200).json(orphanage)
   }
 
   public async store(request: Request, response: Response): Promise<Response> {

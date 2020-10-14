@@ -1,6 +1,6 @@
 import { Router, IRouter } from 'express'
 
-import OrphanageController from '../controller/OrphanageController'
+import OrphanageController from '../../controller/OrphanageController'
 
 class OrphanageRoutes {
   public readonly routes: IRouter
@@ -13,6 +13,7 @@ class OrphanageRoutes {
 
   init() {
     this.routes.get('/', new OrphanageController().index)
+    this.routes.get('/:id', new OrphanageController().show)
     this.routes.post('/', new OrphanageController().store)
   }
 }

@@ -1,9 +1,11 @@
 import 'reflect-metadata'
 import express, { Express, json } from 'express'
+import 'express-async-errors'
 
 import './database/connection'
 
-import Routes from './routes'
+import Routes from './http/routes'
+import middlewareError from './http/middlewares/error'
 
 class Server {
   public readonly server: Express
@@ -20,6 +22,7 @@ class Server {
   middlewares() {
     this.server.use(json())
     this.server.use(Routes)
+    this.server.use(middlewareError)
   }
 
   init() {

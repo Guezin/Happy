@@ -18,6 +18,14 @@ class OrphanageRepository implements IOrphanageRepository {
     return orphanages
   }
 
+  public async findById(orphanage_id: string): Promise<Orphanage | undefined> {
+    const orphanage = await this.ormRepository.findOne({
+      where: { id: orphanage_id }
+    })
+
+    return orphanage
+  }
+
   public async create({
     name,
     latitude,
