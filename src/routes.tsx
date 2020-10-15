@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import LandingScreen from "./pages/Landing";
-import OrphanagesMapScreen from "./pages/OrphanagesMap";
-import OrphanageScreen from "./pages/Orphanage";
-import CreateOrphanageScreen from "./pages/CreateOrphanage";
+import LandingScreen from './pages/Landing'
+import OrphanagesMapScreen from './pages/OrphanagesMap'
+import OrphanageScreen from './pages/Orphanage'
+import CreateOrphanageScreen from './pages/CreateOrphanage'
 
 const Routes: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
         <Route path="/orphanages/:id" component={OrphanageScreen} />
       </Switch>
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export default Routes;
+export default Routes

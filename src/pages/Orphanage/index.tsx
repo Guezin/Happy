@@ -1,15 +1,29 @@
-import React from "react";
-import { FaWhatsapp } from "react-icons/fa";
-import { FiClock, FiInfo } from "react-icons/fi";
-import { Map, Marker, TileLayer } from "react-leaflet";
+import React, { useEffect, useState } from 'react'
+import { FaWhatsapp } from 'react-icons/fa'
+import { FiClock, FiInfo } from 'react-icons/fi'
+import { Map, Marker, TileLayer } from 'react-leaflet'
 
-import Sidebar from "../../components/Sidebar";
+import Sidebar from '../../components/Sidebar'
+import api from '../../services/api'
 
-import mapIcon from "../../utils/mapIcon";
+import mapIcon from '../../utils/mapIcon'
 
-import "./styles.css";
+import './styles.css'
+
+interface IOrphanages {
+  id: string
+  name: string
+  latitude: number
+  longitude: number
+}
 
 export default function Orphanage() {
+  const [orphanages, setOrphanages] = useState<IOrphanages[]>([])
+
+  useEffect(() => {
+    api.get('/orphanages').then(response => setOrphanages(response.data))
+  }, [])
+
   return (
     <div id="page-orphanage">
       <Sidebar />
@@ -71,7 +85,7 @@ export default function Orphanage() {
               <Map
                 center={[-27.2092052, -49.6401092]}
                 zoom={16}
-                style={{ width: "100%", height: 280 }}
+                style={{ width: '100%', height: 280 }}
                 dragging={false}
                 touchZoom={false}
                 zoomControl={false}
@@ -121,5 +135,5 @@ export default function Orphanage() {
         </div>
       </main>
     </div>
-  );
+  )
 }

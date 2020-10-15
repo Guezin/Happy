@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { FiArrowRight } from 'react-icons/fi'
 
-import logoImg from "../../images/logo.svg";
+import logoImg from '../../images/logo.svg'
 
-import "./styles.css";
+import './styles.css'
 
 const Landing: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ const Landing: React.FC = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing

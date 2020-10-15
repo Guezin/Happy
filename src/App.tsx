@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
-import "leaflet/dist/leaflet.css";
-import "./styles/global.css";
+import 'leaflet/dist/leaflet.css'
+import './styles/global.css'
 
-import Routes from "./routes";
+import Routes from './routes'
 
-const App: React.FC = () => <Routes />;
+const App: React.FC = () => <Routes />
 
-export default App;
+export default App
