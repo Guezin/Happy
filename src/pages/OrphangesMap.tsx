@@ -15,6 +15,10 @@ import mapMarker from "../images/map-marker.png";
 export default function OrphanagesMap() {
   const navigation = useNavigation();
 
+  function handleNavigateToCreateOrphanage() {
+    navigation.navigate("SeletecMapPositionScreen");
+  }
+
   function handleNavigateToOrphanageDetails() {
     navigation.navigate("OrphanageDetailsScreen");
   }
@@ -55,7 +59,7 @@ export default function OrphanagesMap() {
 
         <TouchableOpacity
           style={styles.createOrphanageButton}
-          onPress={() => {}}
+          onPress={handleNavigateToCreateOrphanage}
         >
           <Feather name="plus" size={20} color="#FFF" />
         </TouchableOpacity>
