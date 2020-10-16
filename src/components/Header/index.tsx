@@ -6,17 +6,31 @@ import { useNavigation } from "@react-navigation/native";
 
 interface IHeaderProps {
   title: string;
+  showCancel?: boolean;
 }
 
-const Header: React.FC<IHeaderProps> = ({ title }) => {
+const Header: React.FC<IHeaderProps> = ({ title, showCancel = true }) => {
   const navigation = useNavigation();
+
+  function handleGoBackToHomepage() {
+    navigation.navigate("OrphanagesMapScreen");
+  }
 
   return (
     <View style={styles.container}>
-      <BorderlessButton onPress={() => navigation.goBack()}>
+      <BorderlessButton onPress={navigation.goBack}>
         <Feather name="arrow-left" size={24} color="#15b6d6" />
       </BorderlessButton>
+
       <Text style={styles.title}>{title}</Text>
+
+      {showCancel ? (
+        <BorderlessButton onPress={handleGoBackToHomepage}>
+          <Feather name="x" size={24} color="#ff669d" />
+        </BorderlessButton>
+      ) : (
+        <View />
+      )}
     </View>
   );
 };

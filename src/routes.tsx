@@ -28,16 +28,27 @@ export default function Routes() {
           component={OrphanageDetailsScreen}
           options={{
             headerShown: true,
-            header: () => <Header title="Orfanato" />,
+            header: () => <Header title="Orfanato" showCancel={false} />,
           }}
         />
 
         <Screen
           name="SeletecMapPositionScreen"
           component={SeletecMapPositionScreen}
+          options={{
+            headerShown: true,
+            header: () => <Header title="Selecione no mapa" />,
+          }}
         />
 
-        <Screen name="OrphanageDataScreen" component={OrphanageDataScreen} />
+        <Screen
+          name="OrphanageDataScreen"
+          component={OrphanageDataScreen}
+          options={{
+            headerShown: true,
+            header: () => <Header title="Informe os dados" />,
+          }}
+        />
       </Navigator>
     </NavigationContainer>
   );
