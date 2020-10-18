@@ -81,7 +81,7 @@ class OrphanageController {
       about,
       instructions,
       open_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === 'true',
       images
     })
 

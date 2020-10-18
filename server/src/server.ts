@@ -23,7 +23,7 @@ class Server {
 
   middlewares() {
     this.server.use(json())
-    this.server.use(cors)
+    this.server.use(cors())
     this.server.use(
       '/uploads',
       express.static(resolve(__dirname, '..', 'uploads'))
